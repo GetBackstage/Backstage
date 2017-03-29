@@ -20,4 +20,4 @@ The database script as described in "Preparing the project" automatically contai
 
 - **events**: contains all events from the past, present and future. This database basically acts like a calendar.
 - **types**: types contains all different kinds of events, like "Vliegende pastoors", "Joe Hardy" and others.
-- **customer**: contains basic information about customers.
+- **persons**: contains basic information about customers.

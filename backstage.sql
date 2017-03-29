@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 09:37 AM
+-- Generation Time: Mar 29, 2017 at 09:50 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -23,26 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
---
-
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `organization` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `first_name`, `last_name`, `organization`) VALUES
-(1, 'Elias', 'Pinar', 'PXL');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `events`
 --
 
@@ -51,7 +31,7 @@ CREATE TABLE `events` (
   `datetime` datetime NOT NULL,
   `customer` int(11) NOT NULL,
   `type` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `events`
@@ -63,14 +43,34 @@ INSERT INTO `events` (`id`, `datetime`, `customer`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `persons`
+--
+
+CREATE TABLE `persons` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(255) CHARACTER NOT NULL,
+  `last_name` varchar(255) CHARACTER NOT NULL,
+  `organization` varchar(255) CHARACTER NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `persons`
+--
+
+INSERT INTO `persons` (`id`, `first_name`, `last_name`, `organization`) VALUES
+(1, 'Elias', 'Pinar', 'PXL');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `types`
 --
 
 CREATE TABLE `types` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `title` varchar(255) CHARACTER NOT NULL,
+  `description` text CHARACTER NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `types`
@@ -84,15 +84,15 @@ INSERT INTO `types` (`id`, `title`, `description`) VALUES
 --
 
 --
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `persons`
+--
+ALTER TABLE `persons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -106,14 +106,14 @@ ALTER TABLE `types`
 --
 
 --
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `persons`
+--
+ALTER TABLE `persons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `types`
