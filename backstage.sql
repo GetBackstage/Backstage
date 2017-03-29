@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
-  `customer` int(11) NOT NULL,
+  `person` int(11) NOT NULL,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,7 +37,7 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `datetime`, `customer`, `type`) VALUES
+INSERT INTO `events` (`id`, `datetime`, `person`, `type`) VALUES
 (1, '2017-05-01 14:30:00', 1, 1);
 
 -- --------------------------------------------------------
@@ -48,9 +48,9 @@ INSERT INTO `events` (`id`, `datetime`, `customer`, `type`) VALUES
 
 CREATE TABLE `persons` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(255) CHARACTER NOT NULL,
-  `last_name` varchar(255) CHARACTER NOT NULL,
-  `organization` varchar(255) CHARACTER NOT NULL
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `organization` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -68,8 +68,8 @@ INSERT INTO `persons` (`id`, `first_name`, `last_name`, `organization`) VALUES
 
 CREATE TABLE `types` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) CHARACTER NOT NULL,
-  `description` text CHARACTER NOT NULL
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
