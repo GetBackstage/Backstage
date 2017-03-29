@@ -4,10 +4,13 @@ require_once 'src/autoload.php';
 
 use \model\PDOPersonRepository;
 use \model\PDOEventRepository;
+use \model\PDOTypeRepository;
 use \view\PersonJsonView;
 use \view\EventJsonView;
+use \view\TypeJsonView;
 use \controller\PersonController;
 use \controller\EventController;
+use \controller\TypeController;
 
 $user = 'root';
 $password = '';
@@ -30,6 +33,10 @@ try {
     $eventController = new EventController( $eventPDORepository, $eventJsonView );
     $eventController->handleFindEventById( $id );
 
+    $typePDORepository = new PDOTypeRepository( $pdo );
+    $typeJsonView = new TypeJsonView();
+    $typeController = new TypeController( $typePDORepository, $typeJsonView );
+    $typeController->handleFindTypeById( $id );
 } catch ( Exception $e ) {
     echo 'Cannot connect to database';
 }
