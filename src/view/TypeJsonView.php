@@ -8,7 +8,7 @@ class TypeJsonView implements View {
 
         if ( isset( $data['type'] ) ) {
             $type = $data['type'];
-            echo json_encode( ['id' => $event->getId(), 'title' => $event->getTitle(), 'description' => $event->getDescription() ] );
+            echo json_encode( ['id' => $type->getId(), 'title' => $type->getTitle(), 'description' => $type->getDescription() ] );
         } else {
             echo '{}';
         }

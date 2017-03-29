@@ -1,4 +1,7 @@
 <?php
+
+namespace model;
+
 class Type {
     private $id;
 	private $title;

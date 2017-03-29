@@ -2,8 +2,7 @@
 
 namespace model;
 
-class Person
-{
+class Person {
     private $id;
     private $first_name;
 	private $last_name;
