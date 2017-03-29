@@ -8,8 +8,20 @@ CREATE TABLE `events` (
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `types` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `types`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
