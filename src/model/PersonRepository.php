@@ -7,7 +7,7 @@ interface PersonRepository
     public function findPersonById( $id );
     /*
     public function findPersons();
-    public function add(Person $person);
-    public function remove($id);
+    public function add( Person $person );
+    public function remove( $id );
     */
 }

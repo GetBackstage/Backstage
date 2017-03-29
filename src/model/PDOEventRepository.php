@@ -20,7 +20,7 @@ class PDOEventRepository implements EventRepository
             $results = $statement->fetchAll( \PDO::FETCH_ASSOC );
 
             if ( count( $results ) > 0 ) {
-                return new Event( $results[0]['id'], $results[0]['first_name'], $results[0]['last_name'], $results[0]['organization'] );
+                return new Event( $results[0]['id'], $results[0]['datetime'], $results[0]['person'], $results[0]['type'] );
             } else {
                 return null;
             }
