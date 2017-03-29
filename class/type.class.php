@@ -11,8 +11,8 @@ class Type {
         $type = $result->fetch_assoc();
         
         $this->setId( $type['id'] );
-        $this->setTitle( $type['datetime'] );
-        $this->setDescription( $type['customer'] );
+        $this->setTitle( $type['title'] );
+        $this->setDescription( $type['description'] );
     }
 
     // Setters
