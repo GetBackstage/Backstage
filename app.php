@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Based on PXL example
+ */
+
 require_once 'src/autoload.php';
 
 use \model\PDOPersonRepository;

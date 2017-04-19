@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Based on PXL example
+ */
+
 namespace view;
 
 class TypeJsonView implements View {
