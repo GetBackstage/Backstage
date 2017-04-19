@@ -6,13 +6,11 @@ class PDOEventRepository implements EventRepository
 {
     private $connection = null;
 
-    public function __construct( \PDO $connection )
-    {
+    public function __construct( \PDO $connection ) {
         $this->connection = $connection;
     }
 
-    public function findEventById( $id )
-    {
+    public function findEventById( $id ) {
         try {
             $statement = $this->connection->prepare( 'SELECT * FROM events WHERE id=?' );
             $statement->bindParam( 1, $id, \PDO::PARAM_INT );

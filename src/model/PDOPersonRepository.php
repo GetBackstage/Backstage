@@ -6,13 +6,11 @@ class PDOPersonRepository implements PersonRepository
 {
     private $connection = null;
 
-    public function __construct( \PDO $connection )
-    {
+    public function __construct( \PDO $connection ) {
         $this->connection = $connection;
     }
 
-    public function findPersonById( $id )
-    {
+    public function findPersonById( $id ) {
         try {
             $statement = $this->connection->prepare( 'SELECT * FROM persons WHERE id=?' );
             $statement->bindParam( 1, $id, \PDO::PARAM_INT );

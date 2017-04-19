@@ -6,13 +6,11 @@ class PDOTypeRepository implements TypeRepository
 {
     private $connection = null;
 
-    public function __construct( \PDO $connection )
-    {
+    public function __construct( \PDO $connection ) {
         $this->connection = $connection;
     }
 
-    public function findTypeById( $id )
-    {
+    public function findTypeById( $id ) {
         try {
             $statement = $this->connection->prepare( 'SELECT * FROM types WHERE id=?' );
             $statement->bindParam( 1, $id, \PDO::PARAM_INT );
