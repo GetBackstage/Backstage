@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+Options -MultiViews
+
+RewriteEngine on
+
+RewriteRule ^events/person/(.*)$ app.php?id=$1&person=true [QSA]
+RewriteRule ^events/(.*)$ app.php?id=$1 [QSA]
+RewriteRule ^events$ app.php [QSA]
+
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
