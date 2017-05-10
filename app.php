@@ -1,20 +1,9 @@
 <?php
 
-/*
- * Based on PXL example
- */
-
 require_once 'src/autoload.php';
-
-use \model\PDOPersonRepository;
 use \model\PDOEventRepository;
-use \model\PDOTypeRepository;
-use \view\PersonJsonView;
 use \view\EventJsonView;
-use \view\TypeJsonView;
-use \controller\PersonController;
 use \controller\EventController;
-use \controller\TypeController;
 
 $user = 'root';
 $password = '';
@@ -22,25 +11,38 @@ $database = 'backstage';
 $pdo = null;
 
 try {
-    $pdo = new PDO( "mysql:host=localhost;dbname=$database", $user, $password );
-    $pdo->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $pdo = new PDO("mysql:host=localhost;dbname=$database",
+        $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION);
 
-    $id = isset( $_GET['id'] ) ? $_GET['id'] : null;
-
-    $personPDORepository = new PDOPersonRepository( $pdo );
-    $personJsonView = new PersonJsonView();
-    $personController = new PersonController( $personPDORepository, $personJsonView );
-    $personController->handleFindPersonById( $id );
-
-    $eventPDORepository = new PDOEventRepository( $pdo );
+    $eventPDORepository = new PDOEventRepository($pdo);
     $eventJsonView = new EventJsonView();
-    $eventController = new EventController( $eventPDORepository, $eventJsonView );
-    $eventController->handleFindEventById( $id );
+    $eventController = new EventController($eventPDORepository, $eventJsonView);
 
-    $typePDORepository = new PDOTypeRepository( $pdo );
-    $typeJsonView = new TypeJsonView();
-    $typeController = new TypeController( $typePDORepository, $typeJsonView );
-    $typeController->handleFindTypeById( $id );
-} catch ( Exception $e ) {
-    echo 'Cannot connect to database';
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $person = isset($_GET['person']) ? $_GET['person'] : false;
+    $from = isset($_GET['from']) ? $_GET['from'] : null;
+    $until = isset($_GET['until']) ? $_GET['until'] : false;
+
+    if ($person == false) {
+        if ($id == null) {
+            if ($from == null) {
+                $eventController->handleFindEvents();
+            } else {
+                $eventController->handleFindEventsByDate($from, $until);
+            }
+        } else {
+            $eventController->handleFindEventById($id);
+        }
+    } else {
+        if ($from == null) {
+            $eventController->handleFindEventsByPerson($id);
+        } else {
+            $eventController->handleFindEventsByPersonDate($id, $from, $until);
+        }
+    }
+
+} catch (Exception $e) {
+    echo 'cannot connect to database';
 }

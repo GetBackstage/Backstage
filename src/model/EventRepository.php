@@ -1,17 +1,17 @@
 <?php
 
-/*
- * Based on PXL example
- */
-
 namespace model;
 
 interface EventRepository
 {
-    public function findEventById( $id );
-    /*
+    public function findEventsByDate($from, $until);
+    public function findEventsByPersonDate($id, $from, $until);
+    public function findEventById($id);
+    public function findEventsByPerson($id);
     public function findEvents();
-    public function add( Event $event );
-    public function remove( $id );
+
+    /*
+    public function add(Event $event);
+    public function remove($id);
     */
 }

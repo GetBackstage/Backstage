@@ -1,12 +1,9 @@
 <?php
 
-/*
- * Based on PXL example
- */
-
 namespace model;
 
-class Event {
+class Event implements \JsonSerializable
+{
     private $id;
 	private $datetime;
 	private $person;
@@ -52,5 +49,15 @@ class Event {
     public function getType() {
 		return $this->type;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'datetime' => $this->datetime,
+            'person' => $this->person,
+            'type' => $this->type
+        ];
+    }
+
 }
-?>
