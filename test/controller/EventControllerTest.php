@@ -25,11 +25,11 @@ class EventControllerTest extends PHPUnit_Framework_TestCase
         $this->mockView->expects($this->atLeastOnce())->method('show')
             ->will($this->returnCallback(function ($object) {
                 $event = $object['Events'];
-                printf("[{\"id\"=>%d, \"name\"=>%s}]", $event[0]->getId(), $event[0]->getName());
+                printf("[{\"id\"=>%d, \"title\"=>%s, \"description\"=>%s, \"datetime\"=>%s, \"person\"=>%d}]", $event[0]->getId(), $event[0]->getTitle(), $event[0]->getDescription(), $event[0]->getDatetime(), $event[0]->getPerson());
             }));
         $eventController = new EventController($this->mockEventRepository, $this->mockView);
         $eventController->handleFindEventById($event->getId());
-        $this->expectOutputString(sprintf("[{\"id\"=>%d, \"name\"=>%s}]", $event->getId(), $event->getName()));
+        $this->expectOutputString(sprintf("[{\"id\"=>%d, \"title\"=>%s, \"description\"=>%s, \"datetime\"=>%s, \"person\"=>%d}]", $event[0]->getId(), $event[0]->getTitle(), $event[0]->getDescription(), $event[0]->getDatetime(), $event[0]->getPerson()));
     }
 
     public function test_handleFindEventById_EventFound_returnStringEmpty()
@@ -47,8 +47,8 @@ class EventControllerTest extends PHPUnit_Framework_TestCase
 
     public function testHandleFindEvents_EventsFound_stringWithIdName()
     {
-        $event1 = new Event(1, 'testEvent1');
-        $event2 = new Event(2, 'testEvent2');
+        $event1 = new Event(1, '2017-05-01 14:30:00', 1, 'testEvent1', 'Beschrijving.');
+        $event2 = new Event(2, '2017-05-01 14:30:00', 1, 'testEvent2', 'Beschrijving.');
         $events = [$event1, $event2];
         $this->mockEventRepository->expects($this->atLeastOnce())->method('findEvents')->will($this->returnValue([$event1, $event2]));
         $this->mockView->expects($this->atLeastOnce())->method('show')
