@@ -19,6 +19,7 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td><a href="{{URL::to('editUser')}}"><img src="/storage/app/public/edit_icon.png" width="20" height="20" alt="edit"></a></td>
                         </tr>
                     @endforeach
                     </table>
@@ -26,7 +27,7 @@
 
             </div>
             <a href="{{URL::to('addUser')}}" ><button>Add User</button></a>
-            <a href="{{URL::to('editUsers')}}"><button>Edit Users</button></a>
+            <a href="{{URL::to('editUser')}}"><button>Edit Users</button></a>
         </div>
     </div>
 </div>

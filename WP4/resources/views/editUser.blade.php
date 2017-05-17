@@ -8,6 +8,8 @@
                 <div class="panel-heading">Edit Users</div>
                 Undero Constructionezz
 
+                {{ $user->name }}
+
             </div>
         </div>
     </div>
