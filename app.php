@@ -46,7 +46,7 @@ try {
                 $eventController->handleFindEventsByPersonDate($id, $from, $until);
             }
         }
-    } elseif ($method == 'PUT') {
+    } elseif ($method == 'POST') {
         $event = json_decode($requestBody);
 
         $datetime = $event->datetime;

@@ -103,7 +103,7 @@ class PDOEventRepository implements EventRepository
         }
     }
 
-    public function putEvent($id, $datetime, $person, $title, $description)
+    public function postEvent($id, $datetime, $person, $title, $description)
     {
         try {
             $statement = $this->connection->prepare('INSERT INTO events (id, title, datetime, person, description) VALUES (?, ?, ?, ?, ?)');
