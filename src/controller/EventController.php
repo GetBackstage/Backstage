@@ -48,7 +48,7 @@ class EventController
 
     public function handlePostEvent($id = null, $datetime = null, $person = null, $title = null, $description = null)
     {
-        $event = $this->eventRepository->putEvent($id, $datetime, $person, $title, $description);
+        $event = $this->eventRepository->postEvent($id, $datetime, $person, $title, $description);
         $this->view->show(['events' => [$event]]);
     }
 

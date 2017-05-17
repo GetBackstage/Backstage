@@ -108,9 +108,9 @@ class PDOEventRepository implements EventRepository
         try {
             $statement = $this->connection->prepare('INSERT INTO events (id, title, datetime, person, description) VALUES (?, ?, ?, ?, ?)');
             $statement->bindParam(1, $id, \PDO::PARAM_INT);
-            $statement->bindParam(2, $datetime, \PDO::PARAM_INT);
-            $statement->bindParam(3, $person, \PDO::PARAM_INT);
-            $statement->bindParam(4, $title, \PDO::PARAM_INT);
+            $statement->bindParam(2, $title, \PDO::PARAM_INT);
+            $statement->bindParam(3, $datetime, \PDO::PARAM_INT);
+            $statement->bindParam(4, $person, \PDO::PARAM_INT);
             $statement->bindParam(5, $description, \PDO::PARAM_INT);
             $statement->execute();
 
