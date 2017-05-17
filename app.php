@@ -10,6 +10,11 @@ $password = '';
 $database = 'backstage';
 $pdo = null;
 
+$url = parse_url(trim($_SERVER['REQUEST_URI']));
+$pathSegments = arra_values(array_filter(explode('/', $url['path'])));
+$method = $_SERVER['REQUEST_METHOD'];
+$requestBody = file_get_contents('php://input');
+
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=$database",
         $user, $password);
@@ -25,22 +30,27 @@ try {
     $from = isset($_GET['from']) ? $_GET['from'] : null;
     $until = isset($_GET['until']) ? $_GET['until'] : false;
 
-    if ($person == false) {
-        if ($id == null) {
-            if ($from == null) {
-                $eventController->handleFindEvents();
+    if ($method == 'GET')
+        if ($person == false) {
+            if ($id == null) {
+                if ($from == null) {
+                    $eventController->handleFindEvents();
+                } else {
+                    $eventController->handleFindEventsByDate($from, $until);
+                }
             } else {
-                $eventController->handleFindEventsByDate($from, $until);
+                $eventController->handleFindEventById($id);
             }
         } else {
-            $eventController->handleFindEventById($id);
+            if ($from == null) {
+                $eventController->handleFindEventsByPerson($id);
+            } else {
+                $eventController->handleFindEventsByPersonDate($id, $from, $until);
+            }
         }
-    } else {
-        if ($from == null) {
-            $eventController->handleFindEventsByPerson($id);
-        } else {
-            $eventController->handleFindEventsByPersonDate($id, $from, $until);
-        }
+    } else if ($method == 'PUT') {
+        $event = json_decode($requestBody);
+        $
     }
 
 } catch (Exception $e) {

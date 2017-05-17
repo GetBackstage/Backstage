@@ -7,13 +7,15 @@ class Event implements \JsonSerializable
     private $id;
 	private $datetime;
 	private $person;
-	private $type;
+	private $description;
+	private $title;
 
-    function __construct( $id, $datetime, $person, $type ) {
-        $this->setId( $id);
-        $this->setDatetime( $datetime);
-        $this->setPerson( $person);
-        $this->setType( $type);
+    function __construct( $id, $datetime, $person, $title, $tidescriptiontle ) {
+        $this->setId( $id );
+        $this->setDatetime( $datetime );
+        $this->setPerson( $person );
+        $this->setTtile( $title );
+        $this->setDescription( $description );
     }
 
     // Setters
@@ -29,8 +31,12 @@ class Event implements \JsonSerializable
         $this->person = $person;
     }
 
-    public function setType( $type ) {
-        $this->type = $type;
+    public function setTitle( $title ) {
+        $this->title = $title;
+    }
+
+    public function setDescription( $description ) {
+        $this->description = $description;
     }
 
     // Getters
@@ -46,8 +52,12 @@ class Event implements \JsonSerializable
 		return $this->person;
     }
 
-    public function getType() {
-		return $this->type;
+    public function getTitle() {
+         return $this->title;
+    }
+
+    public function getDescription() {
+         return $this->description;
     }
 
     public function jsonSerialize()
@@ -56,7 +66,8 @@ class Event implements \JsonSerializable
             'id' => $this->id,
             'datetime' => $this->datetime,
             'person' => $this->person,
-            'type' => $this->type
+            'title' => $this->title,
+            'description' => $this->description
         ];
     }
 

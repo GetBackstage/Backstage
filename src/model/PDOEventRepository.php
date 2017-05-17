@@ -23,7 +23,7 @@ class PDOEventRepository implements EventRepository
             $statement->setFetchMode(\PDO::FETCH_ASSOC);
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($results as $event) {
-                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['type']);
+                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
             }
             return $events;
         } catch (\Exception $exception) {
@@ -42,7 +42,7 @@ class PDOEventRepository implements EventRepository
             $statement->setFetchMode(\PDO::FETCH_ASSOC);
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($results as $event) {
-                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['type']);
+                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
             }
             return $events;
         } catch (\Exception $exception) {
@@ -60,7 +60,7 @@ class PDOEventRepository implements EventRepository
             $statement->setFetchMode(\PDO::FETCH_ASSOC);
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($results as $event) {
-                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['type']);
+                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
             }
             return $events;
         } catch (\Exception $exception) {
@@ -77,7 +77,7 @@ class PDOEventRepository implements EventRepository
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
             if (count($results) > 0) {
-                return new Event($results[0]['id'], $results[0]['datetime'], $results[0]['person'], $results[0]['type']);
+                return new Event($results[0]['id'], $results[0]['datetime'], $results[0]['person'], $results[0]['title'], $results[0]['description']);
             } else {
                 return null;
             }
@@ -95,7 +95,7 @@ class PDOEventRepository implements EventRepository
             $statement->setFetchMode(\PDO::FETCH_ASSOC);
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($results as $event) {
-                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['type']);
+                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
             }
             return $events;
         } catch (\Exception $exception) {
