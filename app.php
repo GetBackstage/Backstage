@@ -5,10 +5,13 @@ use \model\PDOEventRepository;
 use \view\EventJsonView;
 use \controller\EventController;
 
-$user = 'root';
-$password = '';
-$database = 'backstage';
+$xml = simplexml_load_file('databasegegevens.xml');
+
 $pdo = null;
+$hostname = $xml->hostname;
+$user = $xml->user;
+$password = $xml->password;
+$database = $xml->database;
 
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=$database",
