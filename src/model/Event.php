@@ -10,11 +10,11 @@ class Event implements \JsonSerializable
 	private $description;
 	private $title;
 
-    function __construct( $id, $datetime, $person, $title, $tidescriptiontle ) {
+    function __construct( $id, $datetime, $person, $title, $description ) {
         $this->setId( $id );
         $this->setDatetime( $datetime );
         $this->setPerson( $person );
-        $this->setTtile( $title );
+        $this->setTitle( $title );
         $this->setDescription( $description );
     }
 

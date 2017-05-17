@@ -11,15 +11,13 @@ $database = 'backstage';
 $pdo = null;
 
 $url = parse_url(trim($_SERVER['REQUEST_URI']));
-$pathSegments = arra_values(array_filter(explode('/', $url['path'])));
+$pathSegments = array_values(array_filter(explode('/', $url['path'])));
 $method = $_SERVER['REQUEST_METHOD'];
 $requestBody = file_get_contents('php://input');
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=$database",
-        $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $eventPDORepository = new PDOEventRepository($pdo);
     $eventJsonView = new EventJsonView();
@@ -30,7 +28,7 @@ try {
     $from = isset($_GET['from']) ? $_GET['from'] : null;
     $until = isset($_GET['until']) ? $_GET['until'] : false;
 
-    if ($method == 'GET')
+    if ($method == 'GET') {
         if ($person == false) {
             if ($id == null) {
                 if ($from == null) {
@@ -48,9 +46,20 @@ try {
                 $eventController->handleFindEventsByPersonDate($id, $from, $until);
             }
         }
-    } else if ($method == 'PUT') {
+    } elseif ($method == 'PUT') {
         $event = json_decode($requestBody);
-        $
+
+        $id = $pathSegements[3];
+        $datetime = $event->datetime;
+        $person = $event->person;
+        $title = $event->title;
+        $description = $event->description;
+
+        $eventController->handlePutEvent($id, $datetime, $person, $title, $description);
+
+        http_response_code(201);
+        header('Content-Type: application/json');
+        echo json_encode($person);
     }
 
 } catch (Exception $e) {
