@@ -54,6 +54,19 @@ try {
         $title = $event->title;
         $description = $event->description;
 
+        $eventController->handlePostEvent($id, $datetime, $person, $title, $description);
+
+        http_response_code(201);
+        header('Content-Type: application/json');
+        echo json_encode($person);
+    } elseif ($method == 'PUT') {
+        $event = json_decode($requestBody);
+
+        $datetime = $event->datetime;
+        $person = $event->person;
+        $title = $event->title;
+        $description = $event->description;
+
         $eventController->handlePutEvent($id, $datetime, $person, $title, $description);
 
         http_response_code(201);

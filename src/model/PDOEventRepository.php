@@ -140,4 +140,29 @@ class PDOEventRepository implements EventRepository
             return null;
         }
     }
+
+    public function putEvent($id, $datetime, $person, $title, $description)
+    {
+        try {
+            $statement = $this->connection->prepare('UPDATE events SET title = ?, datetime = ?, person = ?, description = ? WHERE id = ?');
+            $statement->bindParam(5, $id, \PDO::PARAM_INT);
+            $statement->bindParam(1, $title, \PDO::PARAM_INT);
+            $statement->bindParam(2, $datetime, \PDO::PARAM_INT);
+            $statement->bindParam(3, $person, \PDO::PARAM_INT);
+            $statement->bindParam(4, $description, \PDO::PARAM_INT);
+            $statement->execute();
+
+            $statement = $this->connection->prepare('SELECT * FROM events WHERE id=?');
+            $statement->bindParam(1, $id, \PDO::PARAM_INT);
+            $statement->execute();
+            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+            foreach ($results as $event) {
+                $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
+            }
+            return $events;
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
 }

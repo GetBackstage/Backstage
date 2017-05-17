@@ -11,6 +11,7 @@ interface EventRepository
     public function findEvents();
     public function postEvent($id, $datetime, $person, $title, $description);
     public function deleteEvent($id);
+    public function putEvent($id, $datetime, $person, $title, $description);
 
     /*
     public function add(Event $event);
