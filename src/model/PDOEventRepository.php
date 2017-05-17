@@ -118,11 +118,24 @@ class PDOEventRepository implements EventRepository
             $statement->bindParam(1, $id, \PDO::PARAM_INT);
             $statement->execute();
             $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            
+
             foreach ($results as $event) {
                 $events[] = new Event($event['id'], $event['datetime'], $event['person'], $event['title'], $event['description']);
             }
             return $events;
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+
+    public function deleteEvent($id)
+    {
+        try {
+            $statement = $this->connection->prepare('DELETE FROM events WHERE id = ?');
+            $statement->bindParam(1, $id, \PDO::PARAM_INT);
+            $statement->execute();
+            
+            return 'Deleted';
         } catch (\Exception $exception) {
             return null;
         }

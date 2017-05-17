@@ -49,7 +49,6 @@ try {
     } elseif ($method == 'PUT') {
         $event = json_decode($requestBody);
 
-        $id = $pathSegements[3];
         $datetime = $event->datetime;
         $person = $event->person;
         $title = $event->title;
@@ -60,6 +59,10 @@ try {
         http_response_code(201);
         header('Content-Type: application/json');
         echo json_encode($person);
+    } elseif ($method == 'DELETE') {
+        $eventController->handleDeleteEvent($id);
+
+        http_response_code(201);
     }
 
 } catch (Exception $e) {

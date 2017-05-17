@@ -10,6 +10,7 @@ interface EventRepository
     public function findEventsByPerson($id);
     public function findEvents();
     public function putEvent($id, $datetime, $person, $title, $description);
+    public function deleteEvent($id);
 
     /*
     public function add(Event $event);
