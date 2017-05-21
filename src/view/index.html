@@ -10,13 +10,12 @@
     <title>Werkpakket3</title>
 </head>
 
-
 <body>
     <script type="text/javascript">
+        // Get events with fetch and add it to the table.
         function GetEvent() {
             var request = new Request('http://localhost:8080/backstage/events', {
             })
-
             var eventArray;
             fetch(request, {
                 method: 'get',
@@ -24,6 +23,7 @@
             }).then(function (response) {
                 response.json().then(function (result) {
                     eventArray = result;
+                    $("#eventTable tbody tr").remove();
                     for (i = 0; i < eventArray.length; i++) {
                         $("#eventTable").find('tbody')
                             .append($('<tr>')
@@ -47,8 +47,9 @@
             });
         }
 
+        // Create an event with fetch to /backstage/events/ + given id
         function Create() {
-            fetch('http://localhost:8080/backstage/events/2', {
+            fetch('http://localhost:8080/backstage/events/' + document.getElementById('newId').value, {
                 method: 'post',
                 body: JSON.stringify({
                     title: document.getElementById('newTitle').value,
@@ -65,6 +66,12 @@
                 .catch(function (error) {
                     console.log('Request failed', error);
                 });
+
+            document.getElementById("newTitle").value = "";
+            document.getElementById("newDescription").value = "";
+            document.getElementById("newId").value = "";
+            document.getElementById("newPerson").value = "";
+            document.getElementById("newDate").value = "";
         }
     </script>
     <style>
@@ -121,14 +128,14 @@
     </style>
 
     <h1>Werkpakket 3</h1>
-    <h2>Get event</h2>
+    <h2>Events</h2>
     <div style="overflow-x:auto;">
         <table class="table" id="eventTable">
             <thead class="thead thead-inverse">
                 <th>#</th>
                 <th>Titel</th>
                 <th>Datum</th>
-                <th>Persoon</th>
+                <th>Personen</th>
                 <th>Omschrijving</th>
             </thead>
             <tbody>
@@ -142,16 +149,16 @@
             </tbody>
         </table>
 
-        <button onclick="GetEvent()">Get event</button>
+        <button onclick="GetEvent()">Toon events</button>
     </div>
 
     <div id="formDiv">
-        <h2>Create event</h2>
+        <h2>Event aanmaken</h2>
         <form action="/action_page.php">
-            Id: <input type="text" id="newId"> Date: <input type="text" id="newDate"> Title: <input type="text" id="newTitle">            
-            Person: <input type="text" id="newPerson"> Description: <input type="text" id="newDescription"><br>
+            Id: <input type="text" id="newId"> Datum: <input type="text" id="newDate"> Titel: <input type="text" id="newTitle">
+            Personen: <input type="text" id="newPerson"> Omschrijving: <input type="text" id="newDescription"><br>
         </form>
-                    <button onclick="Create()">Create event</button>
+        <button onclick="Create()">Aanmaken</button>
     </div>
 </body>
 
