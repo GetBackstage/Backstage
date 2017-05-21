@@ -51,11 +51,11 @@
             fetch('http://localhost:8080/backstage/events/2', {
                 method: 'post',
                 body: JSON.stringify({
-                    title: document.getElementById('newTitle'),
-                    description: document.getElementById('newDescription'),
-                    id: document.getElementById('newId'),
-                    person: document.getElementById('newPerson'),
-                    datetime: document.getElementById('newDate')
+                    title: document.getElementById('newTitle').value,
+                    description: document.getElementById('newDescription').value,
+                    id: document.getElementById('newId').value,
+                    person: document.getElementById('newPerson').value,
+                    datetime: document.getElementById('newDate').value
                 })
             })
                 .then(JSON)
