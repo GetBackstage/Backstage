@@ -76,25 +76,25 @@
     </script>
     <style>
         table {
-            border-collapse: collapse;
-            border-spacing: 0;
             width: 100%;
-            border: 1px solid #4CAF50;
+            border-collapse: collapse;
         }
 
-        th,
-        td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        tr:nth-of-type(odd) {
+            background: #eee;
         }
 
         th {
-            background-color: #4CAF50;
+            background: #333;
             color: white;
+            font-weight: bold;
+        }
+
+        td,
+        th {
+            padding: 6px;
+            border: 1px solid #ccc;
+            text-align: left;
         }
 
         button {
@@ -124,6 +124,70 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+        }
+        /*smartphone*/
+
+        @media screen and (min-width: 320px) {}
+        /*desktop*/
+
+        @media screen and (max-width: 500px) {
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid black;
+            }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid green;
+                position: relative;
+                padding-left: 50%;
+                padding-top: 5%;
+                padding-bottom: 10%;
+                padding-right: 5%;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                top: 6 px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                border-right: black;
+            }
+
+            td:nth-of-type(1):before {
+                content: "id";
+            }
+            td:nth-of-type(2):before {
+                content: "title";
+            }
+            td:nth-of-type(3):before {
+                content: "datetime";
+            }
+            td:nth-of-type(4):before {
+                content: "person";
+            }
+            td:nth-of-type(5):before {
+                content: "description";
+            }
         }
     </style>
 
@@ -155,8 +219,7 @@
     <div id="formDiv">
         <h2>Event aanmaken</h2>
         <form action="/action_page.php">
-            Id: <input type="text" id="newId"> Datum: <input type="text" id="newDate"> Titel: <input type="text" id="newTitle">
-            Personen: <input type="text" id="newPerson"> Omschrijving: <input type="text" id="newDescription"><br>
+            Id: <input type="text" id="newId"> Datum: <input type="text" id="newDate"> Titel: <input type="text" id="newTitle">            Personen: <input type="text" id="newPerson"> Omschrijving: <input type="text" id="newDescription"><br>
         </form>
         <button onclick="Create()">Aanmaken</button>
     </div>
