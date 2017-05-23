@@ -37,6 +37,16 @@ class UsersController extends Controller
      */
     public function store()
     {
+
+        $this->validate(request(),[
+
+            'name' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
+
+        ]);
+
+
         $user = new User();
 
         $user->name = request('name');
@@ -82,6 +92,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate(request(),[
+
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+
+        ]);
+
+
         $user = User::find($id);
 
         $user->name = $request->get('name');
