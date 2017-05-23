@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    WaMakeG
+                    Group 7A #WP4
                 </div>
 
             </div>

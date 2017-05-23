@@ -21,10 +21,9 @@ Auth::routes();
 Route::get('/home'      , 'HomeController@index');
 Route::get('/users'     , 'UsersController@show');
 Route::get('addUser'   , 'UsersController@create');
-Route::post('/addUser'  , 'UsersController@store');
-Route::get('/editUser/{id}' , 'UsersController@edit');
-Route::patch('/editUser/{id}', 'UsersController@update');
-
+Route::post('/addUser'  , 'UsersController@store')->name('addUser.store');
+Route::get('/editUser/{id}' , 'UsersController@edit')->name('editUser.get');
+Route::patch('/editUser/{id}', 'UsersController@update')->name('editUser.patch');
 
 //route to views
 

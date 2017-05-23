@@ -41,7 +41,7 @@ class UsersController extends Controller
 
         $user->name = request('name');
         $user->email = request('email');
-        $user->password = request('password');
+        $user->password = bcrypt(request('password'));
 
         $user->save();
 
@@ -68,7 +68,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $users = DB::table('users')->where('id',$id);
+        $users = DB::table('users')->where('id',$id)->first();
 
         return view('/editUser', compact('users'));
     }
@@ -82,7 +82,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
+
+        $user->save();
+
+        return redirect('/users');
+
     }
 
     /**

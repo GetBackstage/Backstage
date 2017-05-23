@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add User</div>
 
-                <form method="post" action="/addUser">
+                {{ Form::open(array('action' => "UsersController@store")) }}
 
                     {{csrf_field()}}
 
@@ -25,7 +25,7 @@
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                {{ Form::close() }}
 
                 </div>
 
