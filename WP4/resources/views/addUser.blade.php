@@ -15,6 +15,7 @@
                         <label for="InputName">Name</label>
                         <input type="name" class="form-control" id="name" name="name">
                     </div>
+
                     <div class="form-group">
                         <label for="InputEmail">Email address</label>
                         <input type="email" class="form-control" id="email" name="email">
@@ -24,11 +25,15 @@
                         <label for="InputPassword">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 {{ Form::close() }}
 
                 </div>
 
+            {{--validation--}}
             @if (count($errors))
                 <div class="form-group">
                     <div class="alert alert-danger">

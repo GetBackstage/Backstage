@@ -15,8 +15,8 @@
                     <div class="form-group">
                         <label for="InputName">Name</label>
                         <input type="name" class="form-control" id="name" name="name" value="{{$users->name}}">
-
                     </div>
+
                     <div class="form-group">
                         <label for="InputEmail">Email address</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{$users->email}}">

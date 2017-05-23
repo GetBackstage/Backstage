@@ -18,12 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //routes with controllers
-Route::get('/home'      , 'HomeController@index');
-Route::get('/users'     , 'UsersController@show');
-Route::get('addUser'   , 'UsersController@create');
-Route::post('/addUser'  , 'UsersController@store')->name('addUser.store');
-Route::get('/editUser/{id}' , 'UsersController@edit')->name('editUser.get');
-Route::patch('/editUser/{id}', 'UsersController@update')->name('editUser.patch');
+Route::get('/home'              , 'HomeController@index');
+Route::get('/users'             , 'UsersController@show');
+Route::get('addUser'            , 'UsersController@create');
+Route::post('/addUser'          , 'UsersController@store')->name('addUser.store');
+Route::get('/editUser/{id}'     , 'UsersController@edit')->name('editUser.get');
+Route::patch('/editUser/{id}'   , 'UsersController@update')->name('editUser.patch');
+Route::get('/users/{id}'     , 'UsersController@destroy')->name('users.destroy');
 
 //route to views
 

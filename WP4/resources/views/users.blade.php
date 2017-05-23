@@ -18,6 +18,7 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td><a href="{{route('editUser.get', ['id'=>$user->id])}}"><img src="/edit_icon.png" width="20" height="20" alt="edit"></a></td>
+                            <td><a href="{{route('users.destroy', ['id'=>$user->id])}}"><img src="/remove_icon.png" width="20" height="20" alt="delete"></a></td>
                         </tr>
                     @endforeach
                     </table>
@@ -28,4 +29,7 @@
         </div>
     </div>
 </div>
+
 @endsection
+
+
